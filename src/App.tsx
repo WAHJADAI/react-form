@@ -17,7 +17,7 @@ function App() {
       <div className="grid grid-cols-3 grid-row-3">
         <div className="bg-violet-700 col-span-3">nav</div>
         <div className="bg-red-500 col-span-1 row-span-2">status</div>
-        <div className="bg-green-300  col-span-2 row-span-2">
+        <div className="  col-span-2 row-span-2">
           <Form />
         </div>
       </div>
