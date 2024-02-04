@@ -1,18 +1,21 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+type InputsForm = {
+  date: string
+  time: string
+  channel: string
+  name: string
+  phone: string
+  classified: string
+  priority: string
+  relatedParties: string
+  detail: string
+}
 const Form = () => {
-  type InputsForm = {
-    date: string
-    time: string
-    channel: string
-    name: string
-    phone: string
-    classified: string
-    priority: number
-    relatedParties: string
-    detail: string
-  }
+  const { register, handleSubmit } = useForm<InputsForm>()
+  const onSunmit: SubmitHandler<InputsForm> = (data) => console.log(data)
   return (
     <>
-      <form action="" className="px-2">
+      <form onSubmit={handleSubmit(onSunmit)} className="px-2">
         <div>การรับเรื่อง</div>
         <div className="flex my-2">
           <div className="px-2">
@@ -25,11 +28,14 @@ const Form = () => {
                   type="date"
                   placeholder="Select date"
                   className="input input-bordered w-full max-w-xs mx-2"
+                  {...register('date')}
                 />
+
                 <input
                   type="time"
                   placeholder="Select time"
                   className="input input-bordered w-full max-w-xs"
+                  {...register('time')}
                 />
               </div>
             </label>
@@ -38,15 +44,9 @@ const Form = () => {
             <div className="label">
               <span className="label-text">ช่องทาง</span>
             </div>
-            <select className="select select-bordered">
-              <option disabled selected>
-                Pick one
-              </option>
-              <option>Star Wars</option>
-              <option>Harry Potter</option>
-              <option>Lord of the Rings</option>
-              <option>Planet of the Apes</option>
-              <option>Star Trek</option>
+            <select className="select select-bordered" {...register('channel')}>
+              <option value="ออนไลน์">ออนไลน์</option>
+              <option value="ธรรมชาติ">ธรรมชาติ</option>
             </select>
           </label>
         </div>
@@ -61,6 +61,7 @@ const Form = () => {
               type="text"
               placeholder="ชื่อ และนามสกุลจริง"
               className="input input-bordered w-full max-w-xs"
+              {...register('name')}
             />
           </div>
           <div>
@@ -71,6 +72,7 @@ const Form = () => {
               type="text"
               placeholder="08xxxxxxxx"
               className="input input-bordered w-full max-w-xs"
+              {...register('phone')}
             />
           </div>
           <div className="flex items-end">
@@ -87,29 +89,49 @@ const Form = () => {
               <div className="label">
                 <span className="label-text">หมวดหมู่</span>
               </div>
-              <select className="select select-bordered w-80">
-                <option value="volvo">Volvo</option>
+              <select
+                className="select select-bordered w-80"
+                {...register('classified')}
+              >
+                <option value="บุคคลธรรมดา">บุคคลธรรมดา</option>
+                <option value="หน่วยงานราชกาล">หน่วยงานราชกาล</option>
+                <option value="องค์กรเอกชน">องค์กรเอกชน</option>
               </select>
             </div>
             <div className="basis-2/5">
               <div className="label">
                 <span className="label-text">ระดับความสำคัญ</span>
               </div>
-              <select className="select select-bordered w-80">
-                <option value="volvo">5</option>
+              <select
+                className="select select-bordered w-80"
+                {...register('priority')}
+              >
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
               </select>
             </div>
           </div>
           <div className="label">
             <span className="label-text">ฝ่ายที่เกี่ยวข้อง</span>
           </div>
-          <select className="select select-bordered w-5/6">
-            <option value="volvo">หน่วยงาน</option>
+          <select
+            className="select select-bordered w-5/6"
+            {...register('relatedParties')}
+          >
+            <option value="ฝ่ายบุคคล">ฝ่ายบุคคล</option>
+            <option value="ฝ่ายบัญชี">ฝ่ายบัญชี</option>
+            <option value="ฝ่าย IT">ฝ่าย IT</option>
           </select>
           <div className="label">
             <span className="label-text">รายละเอียด</span>
           </div>
-          <textarea className="textarea textarea-bordered w-5/6"></textarea>
+          <textarea
+            className="textarea textarea-bordered w-5/6"
+            {...register('detail')}
+          ></textarea>
         </div>
         <div className="bg-gray-200 py-2 flex justify-center">
           <button className="btn bg-blue-500">บันทึก</button>
