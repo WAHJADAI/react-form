@@ -6,12 +6,16 @@ type InputsForm = {
   name: string
   phone: string
   classified: string
-  priority: string
+  priority: number
   relatedParties: string
   detail: string
 }
 const Form = () => {
-  const { register, handleSubmit } = useForm<InputsForm>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputsForm>()
   const onSunmit: SubmitHandler<InputsForm> = (data) => console.log(data)
   return (
     <>
@@ -23,20 +27,29 @@ const Form = () => {
               <div className="label">
                 <span className="label-text">วัน เวลา รับเรื่อง</span>
               </div>
-              <div className="flex">
-                <input
-                  type="date"
-                  placeholder="Select date"
-                  className="input input-bordered w-full max-w-xs mx-2"
-                  {...register('date')}
-                />
-
-                <input
-                  type="time"
-                  placeholder="Select time"
-                  className="input input-bordered w-full max-w-xs"
-                  {...register('time')}
-                />
+              <div className="flex gap-5">
+                <div className="w-45">
+                  <input
+                    type="date"
+                    placeholder="Select date"
+                    className="input input-bordered w-full max-w-xs mx-2"
+                    {...register('date', { required: true })}
+                  />
+                  {errors.date?.type === 'required' && (
+                    <p className="text-red-500">Date is required.</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="time"
+                    placeholder="Select time"
+                    className="input input-bordered w-full max-w-xs"
+                    {...register('time', { required: true })}
+                  />
+                  {errors.time?.type === 'required' && (
+                    <p className="text-red-500">Time is required.</p>
+                  )}
+                </div>
               </div>
             </label>
           </div>
