@@ -1,0 +1,16 @@
+{
+  "formData": [
+    {
+      "id": 1,
+      "date": "2024-02-08",
+      "time": "20:39",
+      "channel": "ออนไลน์",
+      "name": "John Dee",
+      "phone": "0899872324",
+      "classified": "บุคคลธรรมดา",
+      "priority": 4,
+      "relatedParties": "ฝ่ายบุคคล",
+      "detail": "เสียงรบกวน"
+    }
+  ]
+}
