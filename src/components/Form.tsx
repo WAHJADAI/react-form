@@ -17,7 +17,7 @@ const Form = () => {
         <div>
           <Watch control={control} />
         </div>
-        <form onSubmit={handleSubmit(onSunmit)} className="px-2 col-span-2">
+        <form onSubmit={handleSubmit(onSunmit)} className=" col-span-2 ">
           <div>การรับเรื่อง</div>
           <div className="flex my-2">
             <div className="px-2">
@@ -99,12 +99,12 @@ const Form = () => {
           <div>ข้อมูลผู้แจ้ง</div>
           <div className="px-2 gap-2">
             <div className="flex">
-              <div className="basis-2/5 ">
+              <div className="basis-2/6 ">
                 <div className="label">
                   <span className="label-text">หมวดหมู่</span>
                 </div>
                 <select
-                  className="select select-bordered w-80"
+                  className="select select-bordered "
                   {...register('classified')}
                 >
                   <option value="บุคคลธรรมดา">บุคคลธรรมดา</option>
@@ -112,12 +112,12 @@ const Form = () => {
                   <option value="องค์กรเอกชน">องค์กรเอกชน</option>
                 </select>
               </div>
-              <div className="basis-2/5">
+              <div className="basis-2/6">
                 <div className="label">
                   <span className="label-text">ระดับความสำคัญ</span>
                 </div>
                 <select
-                  className="select select-bordered w-80"
+                  className="select select-bordered "
                   {...register('priority')}
                 >
                   <option value="5">5</option>
@@ -147,7 +147,8 @@ const Form = () => {
               {...register('detail')}
             ></textarea>
           </div>
-          <div className="bg-gray-200 py-2 flex justify-center">
+
+          <div className="bg-gray-200  flex justify-center absolute bottom-0 w-3/5">
             <button className="btn bg-blue-500">บันทึก</button>
           </div>
         </form>

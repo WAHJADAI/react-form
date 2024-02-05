@@ -5,8 +5,8 @@ import Nav from './components/Nav'
 function App() {
   return (
     <>
-      <div className="grid  grid-row-2">
-        <div>
+      <div className="grid  grid-row-2 w-screen">
+        <div className="col-span-2">
           <Nav />
         </div>
 
@@ -14,8 +14,6 @@ function App() {
           <Form />
         </div>
       </div>
-
-      <p className="text-red-500 text-3xl"> app </p>
     </>
   )
 }
