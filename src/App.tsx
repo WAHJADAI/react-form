@@ -1,5 +1,6 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import Form from './components/Form'
+
 import Nav from './components/Nav'
 
 function App() {
@@ -9,9 +10,8 @@ function App() {
         <div className="col-span-2">
           <Nav />
         </div>
-
         <div>
-          <Form />
+          <Outlet />
         </div>
       </div>
     </>
