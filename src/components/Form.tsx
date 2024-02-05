@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputsForm from '../entity/InputForm'
 import Watch from './Watch'
+import axios from 'axios'
 
 const Form = () => {
   const {
@@ -10,7 +11,10 @@ const Form = () => {
     formState: { errors },
   } = useForm<InputsForm>()
 
-  const onSunmit: SubmitHandler<InputsForm> = (data) => console.log(data)
+  const onSunmit: SubmitHandler<InputsForm> = (data) =>
+    axios.post('http://localhost:3000/formData', data).then((res) => {
+      console.log(res.data)
+    })
   return (
     <>
       <div className="grid grid-cols-3">

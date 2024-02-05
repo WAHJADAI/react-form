@@ -8,4 +8,5 @@ export default interface InputsForm {
   priority: number
   relatedParties: string
   detail: string
+  id: number
 }

@@ -1,59 +1,52 @@
+import { useEffect, useState } from 'react'
+import InputsForm from '../entity/InputForm'
+
+import axios from 'axios'
+
 const Table = () => {
+  const [datas, setDatas] = useState<InputsForm[]>([])
+  const [error, setError] = useState()
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/formData')
+      .then((res) => setDatas(res.data))
+      .catch((err) => setError(err.message))
+  }, [])
+  console.log(datas)
   return (
     <div>
       <div className="overflow-x-auto">
         <table className="table table-xs">
           <thead>
             <tr>
-              <th></th>
+              <th>id</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>company</th>
-              <th>location</th>
-              <th>Last Login</th>
-              <th>Favorite Color</th>
+              <th>Phone</th>
+              <th>classified</th>
+              <th>priority</th>
+              <th>relatedParties</th>
+              <th>detail</th>
+              <th>date</th>
+              <th>time</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Littel, Schaden and Vandervort</td>
-              <td>Canada</td>
-              <td>12/16/2020</td>
-              <td>Blue</td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Zemlak, Daniel and Leannon</td>
-              <td>United States</td>
-              <td>12/5/2020</td>
-              <td>Purple</td>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Carroll Group</td>
-              <td>China</td>
-              <td>8/15/2020</td>
-              <td>Red</td>
-            </tr>
+            {error && <p>{error}</p>}
+            {datas.map((data) => (
+              <tr key={data.id}>
+                <th>{data.id}</th>
+                <th>{data.name}</th>
+                <th>{data.phone}</th>
+                <th>{data.classified}</th>
+                <th>{data.priority}</th>
+                <th>{data.relatedParties}</th>
+                <th>{data.detail}</th>
+                <th>{data.date}</th>
+                <th>{data.time}</th>
+              </tr>
+            ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>company</th>
-              <th>location</th>
-              <th>Last Login</th>
-              <th>Favorite Color</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
