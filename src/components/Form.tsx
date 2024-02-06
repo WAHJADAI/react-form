@@ -12,8 +12,8 @@ const Form = () => {
   } = useForm<InputsForm>()
 
   const onSunmit: SubmitHandler<InputsForm> = (data) =>
-    axios.post('http://localhost:3000/formData', data).then((res) => {
-      console.log(res.data)
+    axios.post('http://localhost:3000/formData', data).then(() => {
+      alert('บันทึกสำเร็จ')
     })
   return (
     <>
@@ -37,9 +37,6 @@ const Form = () => {
                 className="input input-bordered w-full max-w-xs mx-2 col-start-1 col-end-2"
                 {...register('date', { required: true })}
               />
-              {errors.date?.type === 'required' && (
-                <p className="text-red-500">Date is required.</p>
-              )}
 
               <input
                 type="time"
@@ -47,6 +44,9 @@ const Form = () => {
                 className="input input-bordered w-full max-w-xs mx-3"
                 {...register('time', { required: true })}
               />
+              {errors.date?.type === 'required' && (
+                <p className="text-red-500">Date is required.</p>
+              )}
               {errors.time?.type === 'required' && (
                 <p className="text-red-500">Time is required.</p>
               )}
@@ -60,11 +60,14 @@ const Form = () => {
               </div>
               <select
                 className="select select-bordered"
-                {...register('channel')}
+                {...register('channel', { required: true })}
               >
                 <option value="ออนไลน์">ออนไลน์</option>
                 <option value="ธรรมชาติ">ธรรมชาติ</option>
               </select>
+              {errors.channel?.type === 'required' && (
+                <p className="text-red-500">Channel is required.</p>
+              )}
             </label>
           </div>
 
@@ -138,12 +141,15 @@ const Form = () => {
           </div>
           <select
             className="select select-bordered w-5/6"
-            {...register('relatedParties')}
+            {...register('relatedParties', { required: true })}
           >
             <option value="ฝ่ายบุคคล">ฝ่ายบุคคล</option>
             <option value="ฝ่ายบัญชี">ฝ่ายบัญชี</option>
             <option value="ฝ่าย IT">ฝ่าย IT</option>
           </select>
+          {errors.relatedParties?.type === 'required' && (
+            <p className="text-red-500">related parties is required.</p>
+          )}
           <div className="label">
             <span className="label-text">รายละเอียด</span>
           </div>
