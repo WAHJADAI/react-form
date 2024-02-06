@@ -21,43 +21,42 @@ const Form = () => {
         <div>
           <Watch control={control} />
         </div>
-        <form onSubmit={handleSubmit(onSunmit)} className=" col-span-2 ">
-          <div>การรับเรื่อง</div>
-          <div className="flex my-2">
-            <div className="px-2">
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text">วัน เวลา รับเรื่อง</span>
-                </div>
-                <div className="flex gap-5">
-                  <div className="w-45">
-                    <input
-                      type="date"
-                      placeholder="Select date"
-                      className="input input-bordered w-full max-w-xs mx-2"
-                      {...register('date', { required: true })}
-                    />
-                    {errors.date?.type === 'required' && (
-                      <p className="text-red-500">Date is required.</p>
-                    )}
-                  </div>
-                  <div>
-                    <input
-                      type="time"
-                      placeholder="Select time"
-                      className="input input-bordered w-full max-w-xs"
-                      {...register('time', { required: true })}
-                    />
-                    {errors.time?.type === 'required' && (
-                      <p className="text-red-500">Time is required.</p>
-                    )}
-                  </div>
-                </div>
-              </label>
-            </div>
+        <form onSubmit={handleSubmit(onSunmit)} className="col-span-2 ">
+          <p>การรับเรื่อง</p>
+          <div className="grid grid-cols-2 max-md:grid-cols-1 my-2">
+            <label className="form-control w-full max-w-xs grid grid-cols-2">
+              <div className="label">
+                <span className="label-text">
+                  วัน เวลา รับเรื่อง<span className="text-red-500">*</span>
+                </span>
+              </div>
+
+              <input
+                type="date"
+                placeholder="Select date"
+                className="input input-bordered w-full max-w-xs mx-2 col-start-1 col-end-2"
+                {...register('date', { required: true })}
+              />
+              {errors.date?.type === 'required' && (
+                <p className="text-red-500">Date is required.</p>
+              )}
+
+              <input
+                type="time"
+                placeholder="Select time"
+                className="input input-bordered w-full max-w-xs mx-3"
+                {...register('time', { required: true })}
+              />
+              {errors.time?.type === 'required' && (
+                <p className="text-red-500">Time is required.</p>
+              )}
+            </label>
+
             <label className="form-control w-full max-w-xs">
               <div className="label">
-                <span className="label-text">ช่องทาง</span>
+                <span className="label-text">
+                  ช่องทาง<span className="text-red-500">*</span>
+                </span>
               </div>
               <select
                 className="select select-bordered"
@@ -69,8 +68,8 @@ const Form = () => {
             </label>
           </div>
 
-          <div>ผู้แจ้งเรื่อง</div>
-          <div className="flex gap-2 px-2">
+          <p>ผู้แจ้งเรื่อง</p>
+          <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-2 px-2">
             <div>
               <div className="label">
                 <span className="label-text">ชื่อ</span>
@@ -89,11 +88,9 @@ const Form = () => {
               <input
                 type="text"
                 placeholder="08xxxxxxxx"
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered mr-4 max-w-xs"
                 {...register('phone')}
               />
-            </div>
-            <div className="flex items-end">
               <button type="button" className="btn bg-blue-500">
                 ตรวจสอบ
               </button>
@@ -101,58 +98,61 @@ const Form = () => {
           </div>
 
           <div>ข้อมูลผู้แจ้ง</div>
-          <div className="px-2 gap-2">
-            <div className="flex">
-              <div className="basis-2/6 ">
-                <div className="label">
-                  <span className="label-text">หมวดหมู่</span>
-                </div>
-                <select
-                  className="select select-bordered "
-                  {...register('classified')}
-                >
-                  <option value="บุคคลธรรมดา">บุคคลธรรมดา</option>
-                  <option value="หน่วยงานราชกาล">หน่วยงานราชกาล</option>
-                  <option value="องค์กรเอกชน">องค์กรเอกชน</option>
-                </select>
-              </div>
-              <div className="basis-2/6">
-                <div className="label">
-                  <span className="label-text">ระดับความสำคัญ</span>
-                </div>
-                <select
-                  className="select select-bordered "
-                  {...register('priority')}
-                >
-                  <option value="5">5</option>
-                  <option value="4">4</option>
-                  <option value="3">3</option>
-                  <option value="2">2</option>
-                  <option value="1">1</option>
-                </select>
-              </div>
-            </div>
-            <div className="label">
-              <span className="label-text">ฝ่ายที่เกี่ยวข้อง</span>
-            </div>
-            <select
-              className="select select-bordered w-5/6"
-              {...register('relatedParties')}
-            >
-              <option value="ฝ่ายบุคคล">ฝ่ายบุคคล</option>
-              <option value="ฝ่ายบัญชี">ฝ่ายบัญชี</option>
-              <option value="ฝ่าย IT">ฝ่าย IT</option>
-            </select>
-            <div className="label">
-              <span className="label-text">รายละเอียด</span>
-            </div>
-            <textarea
-              className="textarea textarea-bordered w-5/6"
-              {...register('detail')}
-            ></textarea>
-          </div>
 
-          <div className="bg-gray-200  flex justify-center absolute bottom-0 w-3/5">
+          <div className="grid grid-cols-2 gap-2 max-md:grid-cols-1">
+            <div>
+              <div className="label">
+                <span className="label-text">หมวดหมู่</span>
+              </div>
+              <select
+                className="select select-bordered w-full "
+                {...register('classified')}
+              >
+                <option value="บุคคลธรรมดา">บุคคลธรรมดา</option>
+                <option value="หน่วยงานราชกาล">หน่วยงานราชกาล</option>
+                <option value="องค์กรเอกชน">องค์กรเอกชน</option>
+              </select>
+            </div>
+            <div>
+              <div className="label">
+                <span className="label-text">
+                  ระดับความสำคัญ <span className="text-red-500">*</span>
+                </span>
+              </div>
+              <select
+                className="select select-bordered w-full "
+                {...register('priority')}
+              >
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
+            </div>
+          </div>
+          <div className="label">
+            <span className="label-text">
+              ฝ่ายที่เกี่ยวข้อง<span className="text-red-500">*</span>
+            </span>
+          </div>
+          <select
+            className="select select-bordered w-5/6"
+            {...register('relatedParties')}
+          >
+            <option value="ฝ่ายบุคคล">ฝ่ายบุคคล</option>
+            <option value="ฝ่ายบัญชี">ฝ่ายบัญชี</option>
+            <option value="ฝ่าย IT">ฝ่าย IT</option>
+          </select>
+          <div className="label">
+            <span className="label-text">รายละเอียด</span>
+          </div>
+          <textarea
+            className="textarea textarea-bordered w-5/6"
+            {...register('detail')}
+          ></textarea>
+
+          <div className="bg-gray-200  flex justify-center relative bottom-0 w-full">
             <button className="btn bg-blue-500">บันทึก</button>
           </div>
         </form>
